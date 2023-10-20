@@ -1,12 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>News detail</title>
-</head>
-<body>
-<h1>{{news.title}}</h1>
+{%extends 'news/base.html'%}
+
+{%load static%}
+
+{%block title%} {{news.title}} {%endblock title%}
+
+
+{%block content%}
+ <h2>{{news.title}}</h2>
+ <p>{{news.publish_time}}   Izohlar soni: {{comments_count}}</p>
+
+<img src="{{news.image.url}}" alt="Bu yerda rasm bor">
 <p>{{news.body}}</p>
 
-</body>
-</html>
+{%if request.user.is_authenticated and request.user.is_superuser%}
+
+     <div class="card-footer text-center">
+      <a href="{%url 'news_update_page' news.slug%}">Tahrirlash | </a>
+       <a href="{%url 'news_delete_page' news.slug%}">O'chirish</a>
+     </div>
+
+{%endif%}
+<br>
+
+{%   for comment in comments   %}
+
+  <div class="comments" style="padding: 10px;">
+         <p class="font-weight-bold">
+           {{ comment.user }}
+           <span class=" text-muted font-weight-normal">
+             {{ comment.created_time }}
+            </span>
+          </p>
+          {{ comment.body | linebreaks }}
+        </div>
+{%   endfor   %}
+<div class="col-md-8 card mb-4 mt-3">
+    <div class="card-body">
+        <h3>Izoh qoldirish</h3>
+        <form method="post" style="margin-top: 1.3em">{%csrf_token%}
+            {{comment_form.as_p}}
+            <button type="submit" class="btn btn-primary btn-lg">Yuborish</button>
+        </form>
+    </div>
+</div>
+
+
+
+{%endblock content%}

@@ -1,0 +1,27 @@
+{%extends 'news/base.html'%}
+
+{%load static%}
+{%block title%} Qidiruv natijalari {%endblock title%}
+
+{%block content%}
+
+    <h3>Qidiruv natijalari</h3>
+
+    <div class=" container overflow-hidden text-center single_post_content">
+            <h2><span>Mahalliy</span></h2>
+
+              <div class="row gy-5 spost_nav">
+
+               {%for yangilik in qidiruv_yangiliklari%}
+                  <div class="col-6">
+                  <div class="p-3 media wow fadeInDown"> <a href="{{yangilik.get_absolute_url}}" class="media-left"> <img alt="" src="{{yangilik.image.url}}"> </a>
+                    <div class="media-body"> <a href="{{yangilik.get_absolute_url}}" class="catg_title">{{yangilik.title}}</a> </div>
+                  </div>
+                </div>
+                {%endfor%}
+              </div>
+    </div>
+
+
+
+{%endblock content%}

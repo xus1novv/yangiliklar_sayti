@@ -39,7 +39,15 @@
             </ul>
           </div>
           <div class="header_top_right">
-            <p>Friday, December 05, 2045</p>
+            {%if request.user.is_authenticated%}
+            <p><a href="{%url 'user_profile'%}" style="color:white;">My profile</a></p>
+            <p><a href="{%url 'logout'%}" style="color:white;">LogOut</a></p>
+            {%else%}
+            <p><a href="{%url 'user_register'%}" style="color:white;">SignUp</a></p>
+            <p><a href="{%url 'login'%}" style="color:white;">Login</a></p>
+
+            {%endif%}
+
           </div>
         </div>
       </div>
@@ -64,6 +72,12 @@
           <li><a href="{% url 'technology_news_page'%}">Texnologiya</a></li>
           <li><a href="{%url 'sport_news_page'%}">Sport</a></li>
           <li><a href="{% url 'contact_page' %}">Biz bilan aloqa</a></li>
+          <li>
+            <form method="get" action="{% url 'search_result' %}">
+              <input type="search" name="q" placeholder="Qidiruv" class="form-control">
+            </form>
+          </li>
+
         </ul>
       </div>
     </nav>

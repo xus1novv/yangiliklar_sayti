@@ -1,0 +1,11 @@
+{%extends 'news/base.html'%}
+
+{%load static%}
+
+{%block title%} Muvaffaqiyatli ro'yhatdan o'tdinggiz {%endblock title%}
+{%block content%}
+<h1>{{new_user.first_name}} ro'yxatdan muvaffaqiyatli o'tdingiz.</h1>
+<h3>Muvaffaqiyatli ro'yhatdan o'tdinggiz</h3>
+<p><a href="{%url 'login'%}">Login</a></p>
+
+{%endblock content%}

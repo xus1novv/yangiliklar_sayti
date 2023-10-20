@@ -1,0 +1,16 @@
+{%extends 'news/base.html'%}
+
+{%load static%}
+
+{%block title%} Login {%endblock title%}
+
+{%block content%}
+    <h2>Login</h2>
+    <h3>Agar parolni parolni unutgan bo'lsangiz uni <a href="{%url 'password_reset'%}" style="color:blue">tiklang.</a></h3>
+<form method="post">{%csrf_token%}
+
+    {{form.as_p}}
+    <button type="submit">Login</button>
+
+</form>
+{%endblock content%}

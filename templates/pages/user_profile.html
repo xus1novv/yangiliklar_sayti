@@ -1,0 +1,25 @@
+{%extends 'news/base.html'%}
+{%load static%}
+
+{%block title%} Foydalanuvchi profili {%endblock title%}
+
+{%block content%}
+
+<h3>Xush kelibsiz {{user.username}}</h3>
+<h4><a href="{%url 'password_change'%}" class="text-danger">Parolni almashtirish</a></h4>
+
+<h3>Siz haqimgizda malumotlar</h3>
+{% if profile_info.photo.url %}
+<img src="{{profile_info.photo.url}}" alt="Bu yerda rasm bor" width="50%"><br>
+{% else %}
+<h3>Profile rasm topilmadi</h3>
+{%endif%}
+<label>Username:</label><input value="{{user.username}}" readonly><br>
+<label>Email</label><input value="{{user.email}}" readonly><br>
+<label>Ism</label><input value="{{user.first_name}}" readonly><br>
+<label>Familya</label><input value="{{user.last_name}}" readonly><br>
+<h1><a href="{%url 'logout'%}" class="text-danger">Log Out</a></h1>
+<h2><a href="{%url 'edit_user'%}" class="color:blue">Profilni o'zgartirish</a></h2>
+
+
+{%endblock content%}
